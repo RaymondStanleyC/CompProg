@@ -1,0 +1,79 @@
+// MORSE - Decoding Morse Sequences
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <tuple>
+#include <set>
+#include <string>
+#include <map>
+#include <cstring>
+
+using namespace std;
+
+string s;
+map < string, long long int> mapa;
+string let[] = {".-", "-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..", "--", "-.", "---",".--.", "--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."};
+long long int memo[10009];
+
+string to_morse(string s){
+    string res;
+    for(int i=0; i<s.length(); i++){
+        res += let[s[i]-65];
+    }
+    
+    return res;
+}
+
+long long int dp(int p){
+
+    if(p >= s.size()){
+        return 1;
+    }
+    
+    long long int res = 0;
+    
+    if(memo[p] == -1){
+        for(int i=1; i <= 80 && p+i <= s.size(); i++){
+            string temp = s.substr(p, i);
+            if(mapa.count(temp)){
+                res = res + (mapa[temp]*dp(p+i));
+            }
+        }
+        memo[p] = res;
+    }
+    
+    return memo[p];
+}
+
+int main(){
+    
+    int n;
+    string temp;
+    
+    cin >> n;
+    
+    for(int i=0;i<n;i++){
+        
+        mapa.clear();
+        memset(memo, -1, sizeof(memo));
+        cin >> s;
+        
+        int dic;
+        cin >> dic;
+        
+        for(int i=0; i<dic; i++){
+            cin >> temp;
+            
+            if(!mapa.count(to_morse(temp))){
+                mapa[to_morse(temp)] = 1;
+            }else{
+                mapa[to_morse(temp)]++;
+            }
+        }
+        
+        cout << dp(0) << endl;
+        
+    }
+    
+}

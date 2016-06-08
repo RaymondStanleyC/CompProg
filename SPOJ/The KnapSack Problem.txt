@@ -1,0 +1,50 @@
+// The KnapSack Problem
+
+#include <cstdio>
+#include <iostream>
+#include<cstring>
+#include <string.h>
+#include <cmath>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int size[2023];
+int value[2023];
+int memo[2023][2023];
+int n, s;
+
+int dp(int id, int bag){
+	if(id > n){
+		return 0;
+	}
+	if(memo[id][bag] != -1){
+		return memo[id][bag];
+	}
+
+	int res1 = 0;
+	if(bag >= size[id]){
+		res1 = max(res1, dp(id+1, bag-size[id]) + value[id]);
+	}
+	int res2 = dp(id+1, bag);
+	memo[id][bag] = max(res1, res2);
+
+	return memo[id][bag];
+}
+
+int main(){
+
+	cin >> n >> s;
+
+	memset(memo, -1, sizeof(memo));
+	int temp;
+	for(int i=0; i<s; i++){
+		cin >> temp;
+		size[i] = temp;
+		cin >> temp;
+		value[i] = temp;
+	}
+
+	cout << dp(0, n);
+}

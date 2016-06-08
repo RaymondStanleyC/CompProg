@@ -1,0 +1,27 @@
+ //476A - Dreamoon and Stairs
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int main(){
+	int steps, multiple, res=-1, x;
+
+	cin >> steps >> multiple;
+
+	x = steps/2;
+	if(steps%2 == 1) x++;
+
+	while(x<=steps){
+		if(x%multiple == 0){
+			res = x;
+			break;
+		}
+		x++;
+	}
+
+	cout << res << endl;
+
+	return 0;
+}

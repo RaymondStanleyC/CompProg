@@ -1,0 +1,27 @@
+// 510A - Fox And Snake
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int main(){
+
+	int n, m;
+	bool flag = true;
+
+	cin >> n >> m;
+
+	for(int i=1; i<=n; i++){
+		if(i%2){
+			cout << string(m, '#') << endl;
+		} else if(i%2 == 0  && flag){
+			cout << string(m-1, '.') + '#' << endl;
+			flag = false;
+		} else if(i%2 == 0 && !flag){
+			cout << '#' + string(m-1, '.') << endl;
+			flag = true;
+		}
+	}
+	return 0;
+}

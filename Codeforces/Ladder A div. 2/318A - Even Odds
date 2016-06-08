@@ -1,0 +1,31 @@
+// 318A - Even Odds
+#include <iostream>
+#include <math.h>
+
+using namespace std;
+
+
+int main(){
+
+	long long int n, k, res;
+
+	cin >> n;
+	cin >> k;
+
+	if(n%2 == 1){
+		n++;
+
+	}
+
+	// si k esta en el rango de los impares
+	if( n/2 >= k){
+		res = (k*2)-1;
+	// si k esta en el rango de los pares
+	} if(n/2 < k){
+		k -= n/2;
+		res = k*2;
+	}
+
+	cout << res << endl;
+
+}

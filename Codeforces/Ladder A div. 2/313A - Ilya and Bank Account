@@ -1,0 +1,24 @@
+// 313A - Ilya and Bank Account
+#include <iostream>
+#include <string.h>
+#include <math.h>
+
+using namespace std;
+
+int givAL(int n){
+	return n/10;
+}
+
+int givL(int n){
+	int temp = n%10;
+	n = n/100;
+	n *= 10;
+	return n + temp;
+}
+
+int main(){
+	int n;
+
+	cin >> n;
+	cout << max( max( givL(n), givAL(n)) , n) << endl;
+}

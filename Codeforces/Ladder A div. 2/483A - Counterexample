@@ -1,0 +1,53 @@
+//483A - Counterexample
+
+#include<iostream>
+#include <vector>
+#include <algorithm>
+#include <set>
+#include <cstring>
+#include <map>
+#include <list>
+
+using namespace std;
+
+vector<vector<long long int>> matrix;
+
+long long int gcd(long long int a, long long int b){
+    if(b == 0){
+        return a;
+    }
+    
+    return gcd(b, a%b);
+}
+
+int main(){
+    long long int a, b;
+    
+    cin >> a >> b;
+    
+    matrix = vector<vector<long long int>>(b-a+1);
+    
+    for(long long int i=a; i<=b; i++){
+        for(long long int j=i+1; j<=b; j++){
+            if( gcd(j,i) == 1 ){
+                matrix[i-a].push_back(j-a);
+            }
+        }
+    }
+
+    for(int i=0; i<b-a; i++){
+        for(int j=0; j<matrix[i].size(); j++){
+            long long int temp = matrix[i][j];
+            for(int h=0; h<matrix[temp].size(); h++){
+                if(matrix[temp][h] != *lower_bound(matrix[i].begin(), matrix[i].end(), matrix[temp][h])){
+                    cout << i+a << " " << temp+a << " " << matrix[temp][h]+a;
+                    return 0;
+                }
+            }
+        }
+    }
+    
+    cout << -1;
+    
+    return 0;
+}

@@ -1,0 +1,54 @@
+// 208A - Dubstep
+
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main(){
+
+	string s;
+	string result;
+	string temp;
+	int sp = 0;
+	string w = "WUB";
+
+	cin >> s;
+
+	for(int i=0; i<s.size(); i++){
+		if(w[sp] == s[i]){
+			if(sp == 0 && temp != " "){
+				if(s[i+1] == 'U' && s[i+2] == 'B'){
+					result += temp;
+					temp = " ";
+				}
+			}
+
+			if(sp == 2){
+				sp = 0;
+				temp = " ";
+				continue;
+			}
+
+			sp++;
+			temp += s[i];
+		} else{
+			sp = 0;
+			if(w[sp] == s[i] && s[i+1] == 'U' && s[i+2] == 'B'){
+				result += temp;
+				temp = " ";
+				sp=1;
+				continue;
+			}
+				temp += s[i];
+		}
+		if(i == s.size()-1){
+			result+= temp;
+		}
+	}
+	if(result[0] == ' '){
+		result = result.substr(1, result.size()-1);
+	}
+	cout << result << endl;
+	return 0;
+}

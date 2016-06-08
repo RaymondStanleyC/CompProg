@@ -1,0 +1,55 @@
+// 330A - Cakeminator
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+char arr[11][11];
+
+int main(){
+
+	int r, c, cont=0, cantTemp;
+
+	cin >> r >> c;
+
+	for(int i=0; i<r; i++){
+		for(int j=0; j<c; j++){
+			cin >> arr[i][j];
+		}
+	}
+
+	for(int i=0; i<r; i++){
+		cantTemp = 0;
+		for(int j=0; j<c; j++){
+			if(arr[i][j] == 'S'){
+				for(int h=0; h<j; h++){
+					arr[i][h] = '.';
+				}
+				cantTemp = 0;
+				break;
+			} else {
+				arr[i][j] = '-';
+				cantTemp++;
+			}
+		}
+		cont += cantTemp;
+	}
+
+	for(int j=0; j<c; j++){
+		cantTemp = 0;
+		for(int i=0; i<r; i++){
+			if(arr[i][j] == 'S'){
+				cantTemp = 0;
+				break;
+			} else if(arr[i][j] == '.'){
+				cantTemp++;
+			}
+		}
+		cont += cantTemp;
+	}
+
+	cout << cont << endl;
+
+	return 0;
+}

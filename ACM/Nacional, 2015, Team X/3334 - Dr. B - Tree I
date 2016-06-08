@@ -1,0 +1,34 @@
+// 3334 - Dr. B - Tree I
+#include<iostream>
+#include<cstdio>
+
+using namespace std;
+
+int main(){
+	int punt2=0, num1, num2;
+	string s, l;
+	bool juez = false;
+
+	cin >> num1;
+	cin >> s;
+	cin >> num2;
+	cin >> l;
+
+	int cant=s.size();
+
+	for(int punt1=0; punt1<s.size(); punt1++){
+
+		if(s[punt1] == l[punt2]){
+			punt2++;
+			if(punt2 == l.size()){
+				juez = true;
+				cant -= punt2;
+				punt2 = 0;
+			}
+		}
+	}
+	if(juez)
+		cout << cant << endl;
+	else
+		cout << -1 << endl;
+}

@@ -1,0 +1,50 @@
+3277 - Sowing Tomatoes Seeds.
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+vector<int> arrayOfSeeds;
+
+bool  go(){
+	bool j= true;
+	int temp = arrayOfSeeds[1] - arrayOfSeeds[0];
+	for(int i=0; i<arrayOfSeeds.size(); i++){
+		int j = i+1;
+		if(j==arrayOfSeeds.size()){
+			break;
+		}else{
+			if(arrayOfSeeds[j] - arrayOfSeeds[i] != temp){
+				return false;
+			}else{
+				temp = arrayOfSeeds[j] - arrayOfSeeds[i];
+			}
+		}
+	}
+
+	return j;
+}
+
+int main() {
+
+	int m;
+
+	cin >> m;
+
+	for(int i=0; i<m; i++){
+		int temp;
+		cin >> temp;
+		arrayOfSeeds.push_back(temp);
+	}
+
+	sort(arrayOfSeeds.begin(), arrayOfSeeds.end());
+
+	if(go()){
+		cout << "YES" << endl;
+	}else{
+		cout << "NO" << endl;
+	}
+
+	return 0;
+}

@@ -1,0 +1,33 @@
+// 439A - Devu, the Singer and Churu, the Joker
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int main(){
+
+    int cantCan, maxMin, sum=0, temp, cantChi = 0;
+
+    cin >> cantCan >> maxMin;
+
+    for(int i=0; i<cantCan; i++){
+        cin >> temp;
+        sum += temp;
+    }
+    cantChi += (cantCan-1)*2;
+    temp = sum + cantChi*5;
+    if(temp > maxMin){
+        cout << -1 << endl;
+        return 0;
+    } else{
+        int algo;
+
+        algo = maxMin-temp;
+        cantChi += algo/5;
+    }
+
+    cout << cantChi << endl;
+
+    return 0;
+}

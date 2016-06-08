@@ -1,0 +1,63 @@
+// 456A - Laptops
+
+#include <iostream>
+#include <tuple>
+#include <algorithm>
+#include <vector>
+#include <utility>
+#include <set>
+
+using namespace std;
+
+struct PII{
+    
+    int first;
+    int second;
+    
+    PII(int first_, int second_){
+        first = first_;
+        second = second_;
+    }
+};
+
+bool compare_entry( const PII & e1, const PII & e2) {
+    if( e1.first != e2.first)
+        return (e1.first > e2.first);
+    return (e1.second > e2.second);
+}
+
+int main() {
+    
+    int n;
+    PII temp(-1,-1);
+    bool juez = false;
+    vector<PII> vec;
+    set<int> my_set;
+    
+    cin >> n;
+    
+    for(int i=0; i<n; i++){
+        cin >> temp.first;
+        cin >> temp.second;
+        my_set.insert(temp.second);
+        
+        vec.push_back(temp);
+    }
+    
+    sort(vec.begin(), vec.end(), compare_entry);
+    
+    for(int i=0; i<n; i++){
+        my_set.erase(vec[i].second);
+        if(my_set.lower_bound(vec[i].second) != my_set.end()){
+            juez = true;
+        }
+    }
+    
+    if(juez){
+        cout << "Happy Alex";
+    } else{
+        cout << "Poor Alex";
+    }
+    
+    return 0;
+}

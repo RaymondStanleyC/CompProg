@@ -1,0 +1,38 @@
+// 490A - Team Olympiad
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int main(){
+
+	vector<int> v1, v2, v3;
+	int n, temp, cant;
+
+	cin >> n;
+
+	for(int i=1; i<=n; i++){
+		cin >> temp;
+
+		if(temp == 1){
+			v1.push_back(i);
+		}else if(temp == 2){
+			v2.push_back(i);
+		}else if(temp == 3){
+			v3.push_back(i);
+		}
+
+	}
+
+	cant = min(v1.size(), min(v2.size(), v3.size()));
+
+	cout << cant << endl;
+
+	for(int i=0; i<cant; i++){
+		cout << v1[i] << " " << v2[i] << " " << v3[i] << "\n";
+	}
+
+
+	return 0;
+}

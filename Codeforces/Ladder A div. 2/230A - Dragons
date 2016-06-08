@@ -1,0 +1,56 @@
+ //230A - Dragons
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+struct Dragon{
+    int strength;
+    int bonus;
+};
+
+bool compareDragon(Dragon x, Dragon y){
+	return x.strength < y.strength;
+}
+
+int main(){
+	vector<Dragon> vec;
+	int s, n, tempS, tempB;
+	Dragon temp;
+	bool juez = true;
+
+	cin >> s >> n;
+
+	for(int i=0; i<n; i++){
+		cin >> tempS;
+		cin >> tempB;
+
+		temp.strength = tempS;
+		temp.bonus = tempB;
+
+		vec.push_back(temp);
+	}
+
+	sort(vec.begin(), vec.end(), compareDragon);
+
+	for(int i=0; i<vec.size(); i++){
+		tempS = vec[i].strength;
+		tempB = vec[i].bonus;
+
+		if(s <= tempS){
+			juez = false;
+			break;
+		}else{
+			s += tempB;
+		}
+	}
+
+	if(juez){
+		cout << "YES";
+	}else {
+		cout << "NO";
+	}
+
+	return 0;
+}

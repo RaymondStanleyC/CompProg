@@ -1,0 +1,87 @@
+// 276A - Lunch Rush
+#include <iostream>
+#include <map>
+#include <vector>
+#include <string>
+#include <list>
+
+using namespace std;
+
+typedef vector<int> VI;
+typedef vector<VI> VVI;
+
+int m;
+int n;
+VVI l;
+VVI w;
+vector<bool> vis;
+VVI comp;
+int c = 0;
+
+int dfs(int u){
+	int res = 1;
+	vis[u] = true;
+	comp[c].push_back(u+1);
+	for(int i=0; i<l[u].size(); i++){
+		int v = l[u][i];
+		if(!vis[v]){
+			res += dfs(v);
+		}
+	}
+	return res;
+}
+
+void display(){
+	for(int i=0; i<n; i++){
+		for(int j=0; j< l[i].size(); j++){
+			cout << i+1 << " " << l[i][j]+1 << " " << w[i][j] << " " << endl;
+		}
+	}
+	cout << endl;
+}
+
+void displayC(){
+	for(int i=0; i<comp.size(); i++){
+		cout << i+1 <<":"<< endl;
+		for(int j=0; j < comp[i].size(); j++){
+			cout << comp[i][j] << endl;
+		}
+		cout << endl;
+	}
+}
+
+int main(){
+
+	int from, to, weight;
+
+	cin >> n;
+	cin >> m;
+
+	l = VVI(n);
+	w = VVI(n);
+	vis = vector<bool>(n);
+
+	for(int i=0; i<m; i++){
+		cin >> from >> to >> weight;
+		--from;
+		--to;
+		l[from].push_back(to);
+		l[to].push_back(from);
+		w[from].push_back(weight);
+		w[to].push_back(weight);
+	}
+
+	display();
+
+	for(int i=0; i<n; i++){
+		if(!vis[i]){
+			comp.push_back(VI());
+			dfs(i);
+			c++;
+		}
+	}
+
+	displayC();
+
+    return 0;
+}

@@ -1,0 +1,42 @@
+3248 - Jabuke
+
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int go(int n, int m, int arr[], int j){
+	int front=1, last=m, count =0;
+
+	for(int i=1; i<=j; i++){
+		int temp = arr[i];
+		if(temp > last){
+			count += (temp - last);
+			front += (temp - last);
+			last = temp;
+		}else if(temp < front){
+			count += (front - temp);
+			last -= (front-temp);
+			front = temp;
+		}
+	}
+
+	return count;
+
+}
+
+int main(){
+	int n, m, j;
+
+	cin >> n >> m >> j;
+
+	int arr[j+4];
+	arr[0] = 0;
+	for(int i=1; i<=j; i++){
+		int temp;
+		cin >> temp;
+		arr[i] = temp;
+	}
+
+	cout << go(n,m,arr,j);
+}

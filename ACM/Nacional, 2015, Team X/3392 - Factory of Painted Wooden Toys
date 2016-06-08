@@ -1,0 +1,19 @@
+//F,  3392 - Factory of Painted Wooden Toys
+#include<iostream>
+#include<cstdio>
+
+using namespace std;
+
+int main(){
+	long long int n=1;
+
+	while(n){
+
+		scanf("%lld", &n);
+		if(n>1){
+			printf("%lld\n", ((n*n) - ((n-2)*(n-2)) - 4) * 3);
+		}else if(n==1){
+			printf("0\n");
+		}
+	}
+}

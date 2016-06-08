@@ -1,0 +1,31 @@
+// 466A - Cheap Travel
+#include <iostream>
+#include <string.h>
+
+using namespace std;
+
+int memo[1009];
+int viajes, pasosM, ticketN, ticketM;
+
+int dp(int id){
+	if(id <= 0){
+		return 0;
+	}
+
+	if(memo[id] == -1){
+		int res = dp(id-pasosM) + ticketM;
+		res = min(res, dp(id-1) + ticketN);
+		memo[id] = res;
+	}
+
+	return memo[id];
+}
+
+int main(){
+
+	memset(memo, -1, sizeof(memo));
+	cin >> viajes >> pasosM >> ticketN >> ticketM;
+
+	cout << dp(viajes) << endl;
+
+}

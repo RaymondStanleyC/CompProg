@@ -1,0 +1,39 @@
+// 469A - I Wanna Be the Guy
+#include <iostream>
+#include <math.h>
+#include <string.h>
+#include <set>
+
+using namespace std;
+
+
+int main(){
+	int numL;
+	cin >> numL;
+	int arr[numL];
+
+	memset(arr, -1, sizeof(arr));
+
+	int numX, numY, temp;
+	cin >> numX;
+	for(int i=0; i<numX; i++){
+		cin >> temp;
+		arr[temp-1] = 1;
+	}
+	cin >> numY;
+	for(int i=0; i<numY; i++){
+		cin >> temp;
+		arr[temp-1] = 1;
+	}
+
+	bool j = true;
+	for(int i=0; i<numL; i++){
+		if(arr[i] == -1){
+			j = false;
+		}
+	}
+
+	if(j) cout << "I become the guy." << endl;
+	else cout << "Oh, my keyboard!" << endl;
+
+}

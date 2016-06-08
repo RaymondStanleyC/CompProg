@@ -1,0 +1,20 @@
+// 151A - Soft Drinking
+#include <iostream>
+
+using namespace std;
+
+int main(){
+    int n, k, l, c, d, p, nl, np;
+    
+    cin >> n >> k >> l >> c >> d >> p >> nl >> np;
+    
+    l = (l*k)/nl;
+    
+    d = d*c;
+    
+    p = p/np;
+    
+    cout << min(min(l, d),p)/n << endl;
+
+
+}

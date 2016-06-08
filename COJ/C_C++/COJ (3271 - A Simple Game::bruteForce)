@@ -1,0 +1,35 @@
+COJ (3271 - A Simple Game//bruteForce)
+#include <iostream>
+
+using namespace std;
+
+int go(string player, int n){
+	if(n==0 && player == "Dave"){
+		return 1;
+	}
+
+	if(n==0 && player == "Bob"){
+		return 0;
+	}
+
+	if(player =="Bob"){
+		if(n==1){
+			return go("Dave", n-1);
+		}else {
+			return go("Dave", n-1) + go("Dave", n-2);
+		}
+	}else {
+		if(n==1){
+			return go("Bob", n-1);
+		}else {
+			return go("Bob", n-1) + go("Bob", n-2);
+		}
+	}
+}
+
+int main(){
+	for(int i=1; i<30; i++){
+		cout << go("Bob", i) << " " << i << endl;
+	}
+}
+

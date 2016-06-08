@@ -1,0 +1,88 @@
+// 462A - Appleman and Easy Task
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+string arr[101];
+int n;
+
+string tellMe(){
+	string res = "YES";
+	int c = 0;
+	bool flag = false;
+
+	if(n>1){
+		for(int i=0; i<n; i++){
+			for(int j=0; j<n; j++){
+				c = 0;
+				if(i==0 && j==0){ //EXTREMO SUPERIOR IZQUIERDO
+
+					if(arr[i][j+1] == 'o') c++;// a la derecha
+					if(arr[i+1][j] == 'o') c++;// hacia abajo
+
+				} else if(i==n-1 && j==n-1){ //EXTREMO INFERIOR DERECHO
+
+					if(arr[i-1][j] == 'o') c++;// hacia arriba
+					if(arr[i][j-1] == 'o') c++;// a la izquierda
+
+				} else if(i==0 && j==n-1){ //EXTREMO SUPERIOR DERECHO
+
+					if(arr[i][j-1] == 'o') c++;// a la izquierda
+					if(arr[i+1][j] == 'o') c++;// hacia abajo
+
+				} else if(i==n-1 && j==0){ //EXTRMO INFERIOR IZQUIERDO
+
+					if(arr[i-1][j] == 'o') c++;// hacia arriba
+					if(arr[i][j+1] == 'o') c++;// a la derecha
+
+				} else if(i==0){ //EXTREMO SUPERIOR
+					if(arr[i][j-1] == 'o') c++;// a la izquierda
+					if(arr[i+1][j] == 'o') c++;// hacia abajo
+					if(arr[i][j+1] == 'o') c++;// a la derecha
+				} else if(i==n-1){ //EXTREMO INFERIOR
+					if(arr[i][j-1] == 'o') c++;// a la izquierda
+					if(arr[i-1][j] == 'o') c++;// hacia arriba
+					if(arr[i][j+1] == 'o') c++;// a la derecha
+				} else if(j==n-1){ //EXTREMO DERECHO
+					if(arr[i-1][j] == 'o') c++;// hacia arriba
+					if(arr[i][j-1] == 'o') c++;// a la izquierda
+					if(arr[i+1][j] == 'o') c++;// hacia abajo
+				} else if(j==0){ //EXTREMO IZQUIERDO
+					if(arr[i-1][j] == 'o') c++;// hacia arriba
+					if(arr[i][j+1] == 'o') c++;// a la derecha
+					if(arr[i+1][j] == 'o') c++;// hacia abajo
+					continue;
+				} else {
+					if(arr[i-1][j] == 'o') c++;// hacia arriba
+					if(arr[i+1][j] == 'o') c++;// hacia abajo
+					if(arr[i][j-1] == 'o') c++;// a la izquierda
+					if(arr[i][j+1] == 'o') c++;// a la derecha
+				}
+				if(c%2 == 1){
+					res = "NO";
+					flag = true;
+					break;
+				}
+			}
+			if(flag)
+				break;
+		}
+	}
+
+	return res;
+}
+
+int main(){
+
+	cin >> n;
+
+	for(int i=0; i<n; i++){
+		cin >> arr[i];
+	}
+
+	cout << tellMe();
+
+	return 0;
+}

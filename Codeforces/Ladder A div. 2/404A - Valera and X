@@ -1,0 +1,60 @@
+// 404A - Valera and X
+
+#include<iostream>
+#include <vector>
+#include <algorithm>
+#include <set>
+#include <cstring>
+#include <map>
+#include <list>
+
+using namespace std;
+
+char matrix[309][309];
+
+int main(){
+    
+    int n;
+    char diag = 'M', other = 'M';
+    
+    cin >> n;
+    
+    for(int i=0; i<n; i++){
+        for(int j=0; j<n; j++){
+            cin >> matrix[i][j];
+            if( i == j  &&  diag == 'M'){
+                diag = matrix[i][j];
+                continue;
+            }
+            
+            if( (i==j || i+j == n-1)){
+                if( diag != matrix[i][j]){
+                    cout << "NO";
+                    return 0;
+                } else{
+                    continue;
+                }
+            }
+            
+            if(other == 'M'){
+                other = matrix[i][j];
+                continue;
+            }
+            
+            if(other != matrix[i][j]){
+                cout << "NO";
+                return 0;
+            }
+            
+        }
+    }
+    
+    if(other == diag){
+        cout <<"NO";
+        return 0;
+    }
+    
+    cout << "YES";
+    
+    return 0;
+}
